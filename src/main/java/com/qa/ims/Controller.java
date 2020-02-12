@@ -13,6 +13,9 @@ public class Controller {
 
 	public void start() {
 		boolean actionLoop = false;
+		
+		Config.password = Utils.getStringInput();
+		
 		while (!actionLoop) {
 			System.out.println("What would you like to do?");
 			System.out.println("1 Create");

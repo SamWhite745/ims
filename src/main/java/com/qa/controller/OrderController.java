@@ -1,7 +1,5 @@
 package com.qa.controller;
 
-import java.util.List;
-import java.util.stream.Collectors;
 
 import com.qa.databaseObjects.Customer;
 import com.qa.databaseObjects.Item;
@@ -64,8 +62,67 @@ public class OrderController implements CrudController<Order> {
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
-
+		System.out.println("Do you want to: ");
+		System.out.println("1 : update the order");
+		System.out.println("2 : update an item in the order");
+		System.out.println("3 : delete an item from the order");
+		System.out.println("4 : add an item to the order");
+		int selection = Utils.getIntInput();
+		
+		switch (selection) {
+		case 1:
+			System.out.println("new name: ");
+			String name = Utils.getStringInput();
+			System.out.println("For which id: ");
+			int id = Utils.getIntInput();
+			
+			CustomerDao custDao = new CustomerDao();
+			Customer cust = custDao.getCustomer(id);
+			cust.setName(name);
+			orderService.update(new Order(id, cust));
+			break;
+		case 2:
+			System.out.println("Which itemOrder id do you want to update");
+			int itemOrderId = Utils.getIntInput();
+			
+			System.out.println("What is the new item id?: ");
+			int itemId = Utils.getIntInput();
+			
+			System.out.println("What is the new order id?: ");
+			int orderId = Utils.getIntInput();
+			
+			System.out.println("What is the new quantity?: ");
+			int quantity = Utils.getIntInput();
+			
+			ItemDao itemDao = new ItemDao();
+			int itemCost = itemDao.getItem(itemId).getValue() * quantity;
+						
+			itemOrderService.update(new ItemOrders(itemOrderId, itemId, orderId, quantity, itemCost));
+			break;
+		case 3: 
+			System.out.println("Which item order do you want to delete? (id)");
+			int itemDeleteId = Utils.getIntInput();
+			itemOrderService.delete(itemDeleteId);
+			break;
+		case 4:			
+			System.out.println("What is the item id?: ");
+			int newItemId = Utils.getIntInput();
+			
+			System.out.println("What is the order id?: ");
+			int newOrderId = Utils.getIntInput();
+			
+			System.out.println("What is the quantity?: ");
+			int newQuantity = Utils.getIntInput();
+			
+			ItemDao newItemDao = new ItemDao();
+			int newItemCost = newItemDao.getItem(newItemId).getValue() * newQuantity;
+						
+			itemOrderService.create(new ItemOrders(newItemId, newOrderId, newQuantity, newItemCost));
+			break;
+		default:
+			System.out.println("Invalid option");
+			break;
+		}
 	}
 
 	@Override

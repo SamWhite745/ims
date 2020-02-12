@@ -17,6 +17,11 @@ public class Order {
 		this.itemOrders = itemOrders;
 	}
 	
+	public Order(int id, Customer cust) {
+		this.id = id;
+		this.customer = cust;
+	}
+
 	public int getId() {
 		return id;
 	}
