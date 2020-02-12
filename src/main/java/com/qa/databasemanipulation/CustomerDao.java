@@ -49,7 +49,7 @@ public class CustomerDao implements DAO<Customer> {
 
 	@Override
 	public List<Customer> readAll() {
-		List<Customer> customers = new ArrayList<Customer>();
+		List<Customer> customers = new ArrayList<>();
 
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement stmt = connection.createStatement();

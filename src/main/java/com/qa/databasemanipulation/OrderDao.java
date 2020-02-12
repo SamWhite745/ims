@@ -54,7 +54,7 @@ public class OrderDao implements DAO<Order> {
 
 	@Override
 	public List<Order> readAll() {
-		List<Order> orders = new ArrayList<Order>();
+		List<Order> orders = new ArrayList<>();
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement stmt = connection.createStatement();
 				ResultSet rs = stmt.executeQuery("SELECT * FROM orders");){

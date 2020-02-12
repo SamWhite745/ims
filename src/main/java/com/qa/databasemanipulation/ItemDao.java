@@ -50,7 +50,7 @@ public class ItemDao implements DAO<Item> {
 	
 	@Override
 	public List<Item> readAll() {
-		List<Item> items = new ArrayList<Item>();
+		List<Item> items = new ArrayList<>();
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement stmt = connection.createStatement();
 				ResultSet rs = stmt.executeQuery("SELECT * FROM items");){

@@ -1,8 +1,8 @@
 package com.qa.ims;
 
 public class Config {
-	static private String username;
-	static private String password;
+	private static String username;
+	private static String password;
 	
 	public static String getUsername() {
 		return username;

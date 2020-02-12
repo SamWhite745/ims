@@ -82,15 +82,4 @@ public class Controller {
 			break;
 		}
 	}
-
-//	System.out.println("Which customer id do you want to add an order for?");
-//	ResultSet rs = stmt.executeQuery("select * from customers");
-//	while (rs.next())
-//		System.out.println(rs.getInt(1) + "  " + rs.getString(2));
-//	int id = Utils.getIntInput();
-//	String query = " INSERT INTO order (name)" + " values (?)";
-//	PreparedStatement preparedStmt = con.prepareStatement(query);
-//	preparedStmt.setInt(1, id);
-//	preparedStmt.execute();
-//	break;
 }
