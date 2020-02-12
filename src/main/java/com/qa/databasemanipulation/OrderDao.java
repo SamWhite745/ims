@@ -55,7 +55,7 @@ public class OrderDao implements DAO<Order> {
 				int id = rs.getInt("id");
 				int custId = rs.getInt("customer_id");
 
-				CustomerDao custDao = new CustomerDao();
+				CustomerDao custDao = new CustomerDao(Config.getUsername(), Config.getPassword());
 				Customer cust = custDao.getCustomer(custId);
 
 				Order order = new Order(id, cust, itemOrdersDao.readByOrder(id));

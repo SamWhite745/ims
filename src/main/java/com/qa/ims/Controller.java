@@ -49,7 +49,7 @@ public class Controller {
 					action(itemController, action);
 					break;
 				case 2:
-					CustomerController custController = new CustomerController(new CustomerService(new CustomerDao()));
+					CustomerController custController = new CustomerController(new CustomerService(new CustomerDao(Config.getUsername(), Config.getPassword())));
 					action(custController, action);
 					break;
 				case 3:

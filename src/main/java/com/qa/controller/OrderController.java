@@ -10,6 +10,7 @@ import com.qa.databasemanipulation.CustomerDao;
 import com.qa.databasemanipulation.ItemDao;
 import com.qa.databasemanipulation.ItemOrdersDao;
 import com.qa.databasemanipulation.OrderDao;
+import com.qa.ims.Config;
 import com.qa.ims.Utils;
 import com.qa.services.CrudService;
 import com.qa.services.ItemOrdersService;
@@ -30,7 +31,7 @@ public class OrderController implements CrudController<Order> {
 		LOGGER.info("Which customer is this for? (id)");
 		int customerId = Utils.getIntInput();
 
-		CustomerDao custDao = new CustomerDao();
+		CustomerDao custDao = new CustomerDao(Config.getUsername(), Config.getPassword());
 		Customer cust = custDao.getCustomer(customerId);
 
 		orderService.create(new Order(cust));
@@ -78,7 +79,7 @@ public class OrderController implements CrudController<Order> {
 			LOGGER.info("For which id: ");
 			int id = Utils.getIntInput();
 
-			CustomerDao custDao = new CustomerDao();
+			CustomerDao custDao = new CustomerDao(Config.getUsername(), Config.getPassword());
 			Customer cust = custDao.getCustomer(id);
 			cust.setName(name);
 			orderService.update(new Order(id, cust));
