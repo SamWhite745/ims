@@ -16,7 +16,7 @@ import com.qa.services.ItemOrdersService;
 public class OrderController implements CrudController<Order> {
 
 	private CrudService<Order> orderService;
-	private CrudService<ItemOrders> itemOrderService;
+	private ItemOrdersService itemOrderService;
 
 	public OrderController(CrudService<Order> orderService) {
 		this.orderService = orderService;
@@ -127,8 +127,11 @@ public class OrderController implements CrudController<Order> {
 
 	@Override
 	public void delete() {
-		// TODO Auto-generated method stub
-
+		System.out.println("Which order do you want to delete? (id)");
+		int orderId = Utils.getIntInput();
+		
+		itemOrderService.deleteByOrder(orderId);
+		orderService.delete(orderId);
 	}
 
 }

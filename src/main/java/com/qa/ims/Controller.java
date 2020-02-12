@@ -13,8 +13,10 @@ public class Controller {
 
 	public void start() {
 		boolean actionLoop = false;
-		
-		Config.password = Utils.getStringInput();
+		System.out.println("Username: ");
+		Config.setUsername(Utils.getStringInput());
+		System.out.println("Password: ");
+		Config.setPassword(Utils.getStringInput());
 		
 		while (!actionLoop) {
 			System.out.println("What would you like to do?");

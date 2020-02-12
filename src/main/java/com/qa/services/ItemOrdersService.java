@@ -30,5 +30,8 @@ public class ItemOrdersService implements CrudService<ItemOrders> {
 	public void delete(int id) {
 		itemOrdersDao.delete(id);
 	}
-
+	
+	public void deleteByOrder(int id) {
+		itemOrdersDao.deleteByOrder(id);
+	}
 }

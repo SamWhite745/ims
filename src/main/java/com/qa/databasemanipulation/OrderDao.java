@@ -20,7 +20,7 @@ public class OrderDao implements DAO<Order> {
 	public OrderDao() {
 		try {
 			this.connection = DriverManager.getConnection("jdbc:mysql://35.246.47.159:3306/management_database",
-					Config.username, Config.password);
+					Config.getUsername(), Config.getPassword());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

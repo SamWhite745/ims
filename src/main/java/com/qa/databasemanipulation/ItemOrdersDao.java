@@ -18,7 +18,7 @@ public class ItemOrdersDao implements DAO<ItemOrders> {
 	public ItemOrdersDao() {
 		try {
 			this.connection = DriverManager.getConnection("jdbc:mysql://35.246.47.159:3306/management_database",
-					Config.username, Config.password);
+					Config.getUsername(), Config.getPassword());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -115,6 +115,18 @@ public class ItemOrdersDao implements DAO<ItemOrders> {
 
 		}
 		return itemOrders;
+	}
+	
+	public void deleteByOrder(int orderId) {
+		try {
+			String query = "DELETE FROM item_order WHERE order_id = ?";
+			PreparedStatement preparedStmt;
+			preparedStmt = connection.prepareStatement(query);
+			preparedStmt.setInt(1, orderId);
+			preparedStmt.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

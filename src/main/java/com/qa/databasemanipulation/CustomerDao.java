@@ -18,7 +18,7 @@ public class CustomerDao implements DAO<Customer> {
 	public CustomerDao() {
 		try {
 			this.connection = DriverManager.getConnection("jdbc:mysql://35.246.47.159:3306/management_database",
-					Config.username, Config.password);
+					Config.getUsername(), Config.getPassword());
 		} catch (SQLException e) {
 			System.out.println(e.getStackTrace());
 		}
