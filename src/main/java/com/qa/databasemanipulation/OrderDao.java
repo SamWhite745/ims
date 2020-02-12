@@ -18,9 +18,14 @@ public class OrderDao implements DAO<Order> {
 	private Connection connection;
 	private ItemOrdersDao itemOrdersDao = new ItemOrdersDao();
 
-	public OrderDao() throws SQLException {
-		this.connection = DriverManager.getConnection("jdbc:mysql://35.246.47.159:3306/management_database",
-				Config.username, Config.password);
+	public OrderDao() {
+		try {
+			this.connection = DriverManager.getConnection("jdbc:mysql://35.246.47.159:3306/management_database",
+					Config.username, Config.password);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -31,15 +36,11 @@ public class OrderDao implements DAO<Order> {
 			preparedStmt = connection.prepareStatement(query);
 			preparedStmt.setInt(1, t.getCustomer().getId());
 			preparedStmt.execute();
-			
-			for (ItemOrders itemOrder : t.getItemOrders()) {
-				itemOrdersDao.create(itemOrder);
-			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Override
 	public List<Order> readAll() {
 		List<Order> orders = new ArrayList<Order>();
@@ -52,7 +53,7 @@ public class OrderDao implements DAO<Order> {
 
 				CustomerDao custDao = new CustomerDao();
 				Customer cust = custDao.getCustomer(custId);
-				
+
 				Order order = new Order(id, cust, itemOrdersDao.readByOrder(id));
 				orders.add(order);
 			}
@@ -87,7 +88,20 @@ public class OrderDao implements DAO<Order> {
 			e.printStackTrace();
 		}
 	}
-	
+
+	public int readLatest() {
+		int latestId = 0;
+		try {
+			Statement statement = connection.createStatement();
+			ResultSet resultSet = statement.executeQuery("SELECT * FROM customers ORDER BY id DESC LIMIT 1");
+			resultSet.next();
+			latestId = resultSet.getInt("id");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return latestId;
+	}
+
 //	public Order getOrder(int id) {
 //		Order order = null;
 //		try {

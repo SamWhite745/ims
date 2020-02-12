@@ -101,5 +101,4 @@ public class CustomerDao implements DAO<Customer> {
 		}
 		return customer;
 	}
-
 }

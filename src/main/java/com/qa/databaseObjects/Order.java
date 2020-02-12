@@ -6,6 +6,10 @@ public class Order {
 	private int id;
 	private Customer customer;
 	private List<ItemOrders> itemOrders;
+	
+	public Order(Customer customer) {
+		this.customer = customer;
+	}
 
 	public Order(int id, Customer customer, List<ItemOrders> itemOrders) {
 		this.id = id;
