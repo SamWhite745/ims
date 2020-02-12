@@ -14,7 +14,6 @@ public class CustomerController implements CrudController<Customer> {
 
 	@Override
 	public void readAll() {
-		System.out.println(customerService.readAll());
 		customerService.readAll().stream().forEach(customer -> System.out.println(customer.toString()));
 	}
 

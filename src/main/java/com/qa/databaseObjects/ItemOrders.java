@@ -52,5 +52,10 @@ public class ItemOrders {
 	public int getOrder() {
 		return orderId;
 	}
+	
+	@Override
+	public String toString() {
+		return " - id: " + this.id + ", itemId: " + this.itemId + ", orderId: " + this.orderId + ", quantity: " + this.quantity + ", total cost: " + this.itemCost;
+	}
 
 }

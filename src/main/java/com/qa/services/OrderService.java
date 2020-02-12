@@ -3,8 +3,6 @@ package com.qa.services;
 import java.util.List;
 
 import com.qa.databaseObjects.Order;
-import com.qa.databasemanipulation.ItemDao;
-import com.qa.databasemanipulation.ItemOrdersDao;
 import com.qa.databasemanipulation.OrderDao;
 
 public class OrderService implements CrudService<Order> {

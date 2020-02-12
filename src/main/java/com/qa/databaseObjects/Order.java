@@ -40,6 +40,10 @@ public class Order {
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
+	
+	public String toString() {
+		return "Order id : " + id + " - " + customer.getName() + ", Id : " + customer.getId();
+	}
 
 	
 }

@@ -92,7 +92,7 @@ public class OrderDao implements DAO<Order> {
 		int latestId = 0;
 		try {
 			Statement statement = connection.createStatement();
-			ResultSet resultSet = statement.executeQuery("SELECT * FROM customers ORDER BY id DESC LIMIT 1");
+			ResultSet resultSet = statement.executeQuery("SELECT * FROM orders ORDER BY id DESC LIMIT 1");
 			resultSet.next();
 			latestId = resultSet.getInt("id");
 		} catch (Exception e) {
