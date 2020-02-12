@@ -9,18 +9,23 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import com.qa.databaseObjects.Customer;
 import com.qa.ims.Config;
 
 public class CustomerDao implements DAO<Customer> {
 	private Connection connection;
+	public static final Logger LOGGER = Logger.getLogger(CustomerDao.class);
+
 
 	public CustomerDao() {
 		try {
 			this.connection = DriverManager.getConnection("jdbc:mysql://35.246.47.159:3306/management_database",
 					Config.getUsername(), Config.getPassword());
 		} catch (SQLException e) {
-			System.out.println(e.getStackTrace());
+			LOGGER.debug(e.getStackTrace());
+			LOGGER.error(e.getMessage());
 		}
 	}
 	
@@ -32,7 +37,8 @@ public class CustomerDao implements DAO<Customer> {
 			preparedStmt.setString(1, t.getName());
 			preparedStmt.execute();
 		} catch (SQLException e) {
-			System.out.println(e.getStackTrace());
+			LOGGER.debug(e.getStackTrace());
+			LOGGER.error(e.getMessage());
 		}
 
 	}
@@ -51,7 +57,8 @@ public class CustomerDao implements DAO<Customer> {
 				customers.add(customer);
 			}
 		} catch (SQLException e) {
-				System.out.println(e.getStackTrace());
+			LOGGER.debug(e.getStackTrace());
+			LOGGER.error(e.getMessage());
 		} 
 		return customers;
 
@@ -66,7 +73,8 @@ public class CustomerDao implements DAO<Customer> {
 			preparedStmt.setInt(2, t.getId());
 			preparedStmt.execute();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.debug(e.getStackTrace());
+			LOGGER.error(e.getMessage());
 		}
 	}
 
@@ -79,7 +87,8 @@ public class CustomerDao implements DAO<Customer> {
 			preparedStmt.setInt(1, id);
 			preparedStmt.execute();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.debug(e.getStackTrace());
+			LOGGER.error(e.getMessage());
 		}
 	}
 	
@@ -96,7 +105,8 @@ public class CustomerDao implements DAO<Customer> {
 				customer = new Customer(custId, name);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.debug(e.getStackTrace());
+			LOGGER.error(e.getMessage());
 		}
 		return customer;
 	}

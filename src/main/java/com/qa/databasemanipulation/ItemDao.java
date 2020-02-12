@@ -9,18 +9,23 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import com.qa.databaseObjects.Item;
 import com.qa.ims.Config;
 
 public class ItemDao implements DAO<Item> {
 	private Connection connection;
+	public static final Logger LOGGER = Logger.getLogger(ItemDao.class);
+
 
 	public ItemDao() {
 		try {
 			this.connection = DriverManager.getConnection("jdbc:mysql://35.246.47.159:3306/management_database",
 					Config.getUsername(), Config.getPassword());
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.debug(e.getStackTrace());
+			LOGGER.error(e.getMessage());
 		}
 	}
 	
@@ -34,7 +39,8 @@ public class ItemDao implements DAO<Item> {
 			preparedStmt.setInt(2, t.getValue());
 			preparedStmt.execute();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.debug(e.getStackTrace());
+			LOGGER.error(e.getMessage());
 		}
 	}
 	
@@ -52,7 +58,8 @@ public class ItemDao implements DAO<Item> {
 				items.add(item);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.debug(e.getStackTrace());
+			LOGGER.error(e.getMessage());
 
 		}
 		return items;
@@ -68,7 +75,8 @@ public class ItemDao implements DAO<Item> {
 			preparedStmt.setInt(3, t.getId());
 			preparedStmt.execute();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.debug(e.getStackTrace());
+			LOGGER.error(e.getMessage());
 		}
 	}
 
@@ -81,7 +89,8 @@ public class ItemDao implements DAO<Item> {
 			preparedStmt.setInt(1, id);
 			preparedStmt.execute();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.debug(e.getStackTrace());
+			LOGGER.error(e.getMessage());
 		}
 	}
 	
@@ -99,7 +108,8 @@ public class ItemDao implements DAO<Item> {
 				item = new Item(itemId, name, value);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.debug(e.getStackTrace());
+			LOGGER.error(e.getMessage());
 		}
 		return item;
 	}

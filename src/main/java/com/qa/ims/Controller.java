@@ -1,5 +1,7 @@
 package com.qa.ims;
 
+import org.apache.log4j.Logger;
+
 import com.qa.controller.CrudController;
 import com.qa.controller.CustomerController;
 import com.qa.controller.ItemController;
@@ -11,31 +13,33 @@ import com.qa.services.OrderService;
 
 public class Controller {
 
+	public static final Logger LOGGER = Logger.getLogger(Controller.class);
+
+	
 	public void start() {
 		boolean actionLoop = false;
-		System.out.println("Username: ");
+		LOGGER.info("Username: ");
 		Config.setUsername(Utils.getStringInput());
-		System.out.println("Password: ");
+		LOGGER.info("Password: ");
 		Config.setPassword(Utils.getStringInput());
 		
 		while (!actionLoop) {
-			System.out.println("What would you like to do?");
-			System.out.println("1 Create");
-			System.out.println("2 View");
-			System.out.println("3 Update");
-			System.out.println("4 Delete");
-			System.out.println("5 Exit");
+			LOGGER.info("What would you like to do?");
+			LOGGER.info("1 Create");
+			LOGGER.info("2 View");
+			LOGGER.info("3 Update");
+			LOGGER.info("4 Delete");
+			LOGGER.info("5 Exit");
 			int action = Utils.getIntInput();
 			if (action == 5) actionLoop = true;
 			
 			boolean dbLoop = false;
 			while (!dbLoop && !actionLoop) {
-				System.out.println();
-				System.out.println("What database would you like to use?");
-				System.out.println("1 Item");
-				System.out.println("2 Customer");
-				System.out.println("3 Order");
-				System.out.println("4 Back");
+				LOGGER.info("What database would you like to use?");
+				LOGGER.info("1 Item");
+				LOGGER.info("2 Customer");
+				LOGGER.info("3 Order");
+				LOGGER.info("4 Back");
 
 				int database = Utils.getIntInput();
 

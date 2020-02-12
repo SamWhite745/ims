@@ -1,5 +1,7 @@
 package com.qa.controller;
 
+import org.apache.log4j.Logger;
+
 import com.qa.databaseObjects.Item;
 import com.qa.ims.Utils;
 import com.qa.services.CrudService;
@@ -7,6 +9,7 @@ import com.qa.services.CrudService;
 public class ItemController implements CrudController<Item>{
 	
 	private CrudService<Item> itemService;
+	public static final Logger LOGGER = Logger.getLogger(ItemController.class);
 
 	public ItemController(CrudService<Item> itemService) {
 		this.itemService = itemService;
@@ -18,9 +21,9 @@ public class ItemController implements CrudController<Item>{
 	
 	@Override
 	public void create() {
-		System.out.println("What is the name of the item you want to add?");
+		LOGGER.info("What is the name of the item you want to add?");
 		String name = Utils.getStringInput();
-		System.out.println("What is the value of the item?");
+		LOGGER.info("What is the value of the item?");
 		int value = Utils.getIntInput();
 		Item item = new Item(name, value);
 		itemService.create(item);		
@@ -28,11 +31,11 @@ public class ItemController implements CrudController<Item>{
 
 	@Override
 	public void update() {
-		System.out.println("What item id do you want to update");
+		LOGGER.info("What item id do you want to update");
 		int id = Utils.getIntInput();
-		System.out.println("What is the name of the item");
+		LOGGER.info("What is the name of the item");
 		String name = Utils.getStringInput();
-		System.out.println("What is the value of the item?");
+		LOGGER.info("What is the value of the item?");
 		int value = Utils.getIntInput();
 		Item item = new Item(id, name, value);
 		itemService.update(item);		
@@ -41,10 +44,10 @@ public class ItemController implements CrudController<Item>{
 
 	@Override
 	public void delete() {
-		System.out.println("What is the item Id you want to delete?");
+		LOGGER.info("What is the item Id you want to delete?");
 		int id = Utils.getIntInput();
 		itemService.delete(id);
-		System.out.println("Successfully deleted");
+		LOGGER.info("Successfully deleted");
 	}
 
 }

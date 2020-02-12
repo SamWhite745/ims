@@ -1,5 +1,6 @@
 package com.qa.controller;
 
+import org.apache.log4j.Logger;
 
 import com.qa.databaseObjects.Customer;
 import com.qa.databaseObjects.Item;
@@ -14,6 +15,7 @@ import com.qa.services.CrudService;
 import com.qa.services.ItemOrdersService;
 
 public class OrderController implements CrudController<Order> {
+	public static final Logger LOGGER = Logger.getLogger(OrderController.class);
 
 	private CrudService<Order> orderService;
 	private ItemOrdersService itemOrderService;
@@ -25,7 +27,7 @@ public class OrderController implements CrudController<Order> {
 
 	@Override
 	public void create() {
-		System.out.println("Which customer is this for? (id)");
+		LOGGER.info("Which customer is this for? (id)");
 		int customerId = Utils.getIntInput();
 
 		CustomerDao custDao = new CustomerDao();
@@ -36,25 +38,25 @@ public class OrderController implements CrudController<Order> {
 		OrderDao orderDao = new OrderDao();
 		int orderId = orderDao.readLatest();
 
-		System.out.println("What item do you want to add to the order? (id)");
+		LOGGER.info("What item do you want to add to the order? (id)");
 		int itemId = Utils.getIntInput();
 
 		ItemDao itemDao = new ItemDao();
 		Item item = itemDao.getItem(itemId);
 
-		System.out.println("How many of this item do you want?");
+		LOGGER.info("How many of this item do you want?");
 		int quantity = Utils.getIntInput();
 
 		ItemOrders iOrder = new ItemOrders(item.getId(), orderId, quantity, item.getValue() * quantity);
 		itemOrderService.create(iOrder);
 
-		System.out.println("Order successfully created");
+		LOGGER.info("Order successfully created");
 	}
 
 	@Override
 	public void readAll() {
 		for (Order order : orderService.readAll()) {
-			System.out.println(order.toString());
+			LOGGER.info(order.toString());
 			itemOrderService.readAll().stream().filter(itemOrder -> itemOrder.getOrder() == order.getId())
 					.forEach(iOrders -> System.out.println(iOrders.toString()));
 		}
@@ -62,74 +64,74 @@ public class OrderController implements CrudController<Order> {
 
 	@Override
 	public void update() {
-		System.out.println("Do you want to: ");
-		System.out.println("1 : update the order");
-		System.out.println("2 : update an item in the order");
-		System.out.println("3 : delete an item from the order");
-		System.out.println("4 : add an item to the order");
+		LOGGER.info("Do you want to: ");
+		LOGGER.info("1 : update the order");
+		LOGGER.info("2 : update an item in the order");
+		LOGGER.info("3 : delete an item from the order");
+		LOGGER.info("4 : add an item to the order");
 		int selection = Utils.getIntInput();
-		
+
 		switch (selection) {
 		case 1:
-			System.out.println("new name: ");
+			LOGGER.info("new name: ");
 			String name = Utils.getStringInput();
-			System.out.println("For which id: ");
+			LOGGER.info("For which id: ");
 			int id = Utils.getIntInput();
-			
+
 			CustomerDao custDao = new CustomerDao();
 			Customer cust = custDao.getCustomer(id);
 			cust.setName(name);
 			orderService.update(new Order(id, cust));
 			break;
 		case 2:
-			System.out.println("Which itemOrder id do you want to update");
+			LOGGER.info("Which itemOrder id do you want to update");
 			int itemOrderId = Utils.getIntInput();
-			
-			System.out.println("What is the new item id?: ");
+
+			LOGGER.info("What is the new item id?: ");
 			int itemId = Utils.getIntInput();
-			
-			System.out.println("What is the new order id?: ");
+
+			LOGGER.info("What is the new order id?: ");
 			int orderId = Utils.getIntInput();
-			
-			System.out.println("What is the new quantity?: ");
+
+			LOGGER.info("What is the new quantity?: ");
 			int quantity = Utils.getIntInput();
-			
+
 			ItemDao itemDao = new ItemDao();
 			int itemCost = itemDao.getItem(itemId).getValue() * quantity;
-						
+
 			itemOrderService.update(new ItemOrders(itemOrderId, itemId, orderId, quantity, itemCost));
 			break;
-		case 3: 
-			System.out.println("Which item order do you want to delete? (id)");
+		case 3:
+			LOGGER.info("Which item order do you want to delete? (id)");
 			int itemDeleteId = Utils.getIntInput();
 			itemOrderService.delete(itemDeleteId);
 			break;
-		case 4:			
-			System.out.println("What is the item id?: ");
+		case 4:
+			LOGGER.info("What is the item id?: ");
 			int newItemId = Utils.getIntInput();
-			
-			System.out.println("What is the order id?: ");
+
+			LOGGER.info("What is the order id?: ");
 			int newOrderId = Utils.getIntInput();
-			
-			System.out.println("What is the quantity?: ");
+
+			LOGGER.info("What is the quantity?: ");
 			int newQuantity = Utils.getIntInput();
-			
+
 			ItemDao newItemDao = new ItemDao();
 			int newItemCost = newItemDao.getItem(newItemId).getValue() * newQuantity;
-						
+
 			itemOrderService.create(new ItemOrders(newItemId, newOrderId, newQuantity, newItemCost));
 			break;
 		default:
-			System.out.println("Invalid option");
+			LOGGER.info("Invalid option");
 			break;
 		}
 	}
 
 	@Override
 	public void delete() {
-		System.out.println("Which order do you want to delete? (id)");
+		LOGGER.info("Which order do you want to delete? (id)");
 		int orderId = Utils.getIntInput();
-		
+
 		itemOrderService.deleteByOrder(orderId);
 		orderService.delete(orderId);
 	}

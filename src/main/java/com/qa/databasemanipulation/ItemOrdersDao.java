@@ -9,18 +9,23 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import com.qa.databaseObjects.ItemOrders;
 import com.qa.ims.Config;
 
 public class ItemOrdersDao implements DAO<ItemOrders> {
 	private Connection connection;
+	public static final Logger LOGGER = Logger.getLogger(ItemOrdersDao.class);
+
 
 	public ItemOrdersDao() {
 		try {
 			this.connection = DriverManager.getConnection("jdbc:mysql://35.246.47.159:3306/management_database",
 					Config.getUsername(), Config.getPassword());
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.debug(e.getStackTrace());
+			LOGGER.error(e.getMessage());
 		}
 	}
 	
@@ -36,7 +41,8 @@ public class ItemOrdersDao implements DAO<ItemOrders> {
 			preparedStmt.setInt(4, t.getItemCost());
 			preparedStmt.execute();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.debug(e.getStackTrace());
+			LOGGER.error(e.getMessage());
 		}
 	}
 	
@@ -57,7 +63,8 @@ public class ItemOrdersDao implements DAO<ItemOrders> {
 				itemOrders.add(itemOrder);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.debug(e.getStackTrace());
+			LOGGER.error(e.getMessage());
 
 		}
 		return itemOrders;
@@ -76,7 +83,8 @@ public class ItemOrdersDao implements DAO<ItemOrders> {
 			
 			preparedStmt.execute();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.debug(e.getStackTrace());
+			LOGGER.error(e.getMessage());
 		}
 
 	}
@@ -90,7 +98,8 @@ public class ItemOrdersDao implements DAO<ItemOrders> {
 			preparedStmt.setInt(1, id);
 			preparedStmt.execute();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.debug(e.getStackTrace());
+			LOGGER.error(e.getMessage());
 		}
 	}
 
@@ -111,7 +120,8 @@ public class ItemOrdersDao implements DAO<ItemOrders> {
 				itemOrders.add(itemOrder);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.debug(e.getStackTrace());
+			LOGGER.error(e.getMessage());
 
 		}
 		return itemOrders;
@@ -125,7 +135,8 @@ public class ItemOrdersDao implements DAO<ItemOrders> {
 			preparedStmt.setInt(1, orderId);
 			preparedStmt.execute();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.debug(e.getStackTrace());
+			LOGGER.error(e.getMessage());
 		}
 	}
 
