@@ -31,15 +31,6 @@ public class CustomerDao implements DAO<Customer> {
 		this.username = username;
 		this.password = password;
 	}
-	/*
-	 * try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl,
-	 * username, password); Statement statement = connection.createStatement();
-	 * ResultSet resultSet = statement.executeQuery("select * from customers");) {
-	 * ArrayList<Customer> customers = new ArrayList<>(); while (resultSet.next()) {
-	 * customers.add(customerFromResultSet(resultSet)); } return customers; } catch
-	 * (SQLException e) { LOGGER.debug(e.getStackTrace());
-	 * LOGGER.error(e.getMessage()); } return new ArrayList<>();
-	 */
 
 	@Override
 	public void create(Customer t) {
