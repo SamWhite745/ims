@@ -51,7 +51,7 @@ public class ItemOrdersDao implements DAO<ItemOrders> {
 	
 	@Override
 	public List<ItemOrders> readAll() {
-		List<ItemOrders> itemOrders = new ArrayList<ItemOrders>();
+		List<ItemOrders> itemOrders = new ArrayList<>();
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement stmt = connection.createStatement();
 				ResultSet rs = stmt.executeQuery("SELECT * FROM item_order");){
@@ -109,7 +109,7 @@ public class ItemOrdersDao implements DAO<ItemOrders> {
 
 	public List<ItemOrders> readByOrder(int orderId) {
 		String query = "SELECT * FROM item_order WHERE orders_id = ?";
-		List<ItemOrders> itemOrders = new ArrayList<ItemOrders>();
+		List<ItemOrders> itemOrders = new ArrayList<>();
 		
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				PreparedStatement preparedStmt = connection.prepareStatement(query);){
