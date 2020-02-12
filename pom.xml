@@ -48,7 +48,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>com.qa.ims.MySQLConnection</mainClass>
+							<mainClass>com.qa.ims.Runner</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
