@@ -6,12 +6,11 @@ import com.qa.databaseObjects.Item;
 import com.qa.databasemanipulation.ItemDao;
 
 public class ItemService implements CrudService<Item>{
-	ItemDao itemDao;
+	private ItemDao itemDao;
 
 	public ItemService(ItemDao itemDao) {
 		this.itemDao = itemDao;
 	}
-	
 	
 	@Override
 	public List<Item> readAll() {
@@ -20,20 +19,17 @@ public class ItemService implements CrudService<Item>{
 
 	@Override
 	public void create(Item t) {
-		// TODO Auto-generated method stub
-		
+		itemDao.create(t);
 	}
 
 	@Override
-	public void update(long id, Item t) {
-		// TODO Auto-generated method stub
-		
+	public void update(Item t) {
+		itemDao.update(t);
 	}
 
 	@Override
-	public void delete(Item t) {
-		// TODO Auto-generated method stub
-		
+	public void delete(int id) {
+		itemDao.delete(id);
 	}
 
 }
