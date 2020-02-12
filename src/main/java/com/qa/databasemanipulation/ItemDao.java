@@ -22,12 +22,12 @@ public class ItemDao implements DAO<Item> {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 	}
-
+	
+	@Override
 	public void create(Item t) {
 		try {
-			String query = " INSERT INTO items (name, value)" + " values (?, ?)";
+			String query = " INSERT INTO items (name, value) values (?, ?)";
 			PreparedStatement preparedStmt;
 			preparedStmt = connection.prepareStatement(query);
 			preparedStmt.setString(1, t.getName());
@@ -36,31 +36,10 @@ public class ItemDao implements DAO<Item> {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 	}
-
-	public void update(Item t) {
-		try {
-		String query = "UPDATE items SET name = ?, value = ? WHERE id = ?";
-		PreparedStatement preparedStmt = connection.prepareStatement(query);
-		preparedStmt.setString(1, t.getName());
-		preparedStmt.setInt(2, t.getValue());
-		preparedStmt.setInt(3, t.getId());
-		preparedStmt.execute();
-		} catch (SQLException e) {
-			e.printStackTrace();
-
-		}
-	}
-
-	public void delete(int id) {
-		// TODO Auto-generated method stub
-
-	}
-
+	
 	@Override
 	public List<Item> readAll() {
-		
 		List<Item> items = new ArrayList<Item>();
 		try {
 			Statement stmt = connection.createStatement();
@@ -76,7 +55,52 @@ public class ItemDao implements DAO<Item> {
 			e.printStackTrace();
 
 		}
-
 		return items;
+	}
+	
+	@Override
+	public void update(Item t) {
+		try {
+			String query = "UPDATE items SET name = ?, value = ? WHERE id = ?";
+			PreparedStatement preparedStmt = connection.prepareStatement(query);
+			preparedStmt.setString(1, t.getName());
+			preparedStmt.setInt(2, t.getValue());
+			preparedStmt.setInt(3, t.getId());
+			preparedStmt.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void delete(int id) {
+		try {
+			String query = "DELETE FROM items WHERE id = ?";
+			PreparedStatement preparedStmt;
+			preparedStmt = connection.prepareStatement(query);
+			preparedStmt.setInt(1, id);
+			preparedStmt.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public Item getItem(int id) {
+		Item item = null;
+		try {
+			String query = "SELECT * FROM items WHERE id = ?";
+			PreparedStatement preparedStmt = connection.prepareStatement(query);
+			preparedStmt.setInt(1, id);
+			ResultSet rs = preparedStmt.executeQuery();
+			while (rs.next()) {
+				int itemId = rs.getInt("id");
+				String name = rs.getString("name");
+				int value = rs.getInt("value");
+				item = new Item(itemId, name, value);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return item;
 	}
 }

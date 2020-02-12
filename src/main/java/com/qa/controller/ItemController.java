@@ -13,7 +13,7 @@ public class ItemController implements CrudController<Item>{
 	}
 	@Override
 	public void readAll() {
-		System.out.println(itemService.readAll());
+		itemService.readAll().stream().forEach(item -> System.out.println(item.toString()));
 	}
 
 	@Override
@@ -28,7 +28,14 @@ public class ItemController implements CrudController<Item>{
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
+		System.out.println("What item id do you want to update");
+		int id = Utils.getIntInput();
+		System.out.println("What is the name of the item");
+		String name = Utils.getStringInput();
+		System.out.println("What is the value of the item?");
+		int value = Utils.getIntInput();
+		Item item = new Item(id, name, value);
+		itemService.update(item);		
 		
 	}
 

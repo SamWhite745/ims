@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.qa.databaseObjects.Customer;
+import com.qa.databaseObjects.Customer;
 import com.qa.ims.Config;
 
 public class CustomerDao implements DAO<Customer> {
@@ -23,7 +24,8 @@ public class CustomerDao implements DAO<Customer> {
 			System.out.println(e.getStackTrace());
 		}
 	}
-
+	
+	@Override
 	public void create(Customer t) {
 		try {
 			String query = " INSERT INTO customers (name)" + " values (?)";
@@ -36,6 +38,7 @@ public class CustomerDao implements DAO<Customer> {
 
 	}
 
+	@Override
 	public List<Customer> readAll() {
 		List<Customer> customers = new ArrayList<Customer>();
 
@@ -55,7 +58,8 @@ public class CustomerDao implements DAO<Customer> {
 
 	}
 
-	public void update(Customer t) throws SQLException {
+	@Override
+	public void update(Customer t){
 		try {
 			String query = "UPDATE customers SET name = ? WHERE id = ?";
 			PreparedStatement preparedStmt = connection.prepareStatement(query);
@@ -63,14 +67,39 @@ public class CustomerDao implements DAO<Customer> {
 			preparedStmt.setInt(2, t.getId());
 			preparedStmt.execute();
 		} catch (SQLException e) {
-			System.out.println(e.getStackTrace());
+			e.printStackTrace();
 		}
-		
 	}
 
+	@Override
 	public void delete(int id) {
-		// TODO Auto-generated method stub
-
+		try {
+			String query = "DELETE FROM customers WHERE id = ?";
+			PreparedStatement preparedStmt;
+			preparedStmt = connection.prepareStatement(query);
+			preparedStmt.setInt(1, id);
+			preparedStmt.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public Customer getCustomer(int id) {
+		Customer customer = null;
+		try {
+			String query = "SELECT * FROM customers WHERE id = ?";
+			PreparedStatement preparedStmt = connection.prepareStatement(query);
+			preparedStmt.setInt(1, id);
+			ResultSet rs = preparedStmt.executeQuery();
+			while (rs.next()) {
+				int custId = rs.getInt("id");
+				String name = rs.getString("name");
+				customer = new Customer(custId, name);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return customer;
 	}
 
 }

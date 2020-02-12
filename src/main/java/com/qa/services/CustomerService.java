@@ -6,8 +6,7 @@ import com.qa.databaseObjects.Customer;
 import com.qa.databasemanipulation.CustomerDao;
 
 public class CustomerService implements CrudService<Customer> {
-
-	CustomerDao custDao;
+	private CustomerDao custDao;
 
 	public CustomerService(CustomerDao custDao) {
 		this.custDao = custDao;
@@ -21,18 +20,16 @@ public class CustomerService implements CrudService<Customer> {
 	@Override
 	public void create(Customer t) {
 		custDao.create(t);
-
 	}
 
 	@Override
-	public void update(long id, Customer t) {
-
+	public void update(Customer t) {
+		custDao.update(t);
 	}
 
 	@Override
-	public void delete(Customer t) {
-		// TODO Auto-generated method stub
-
+	public void delete(int id) {
+		custDao.delete(id);
 	}
 
 }

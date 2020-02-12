@@ -2,17 +2,25 @@ package com.qa.databaseObjects;
 
 public class ItemOrders {
 	private int id;
-	private Item item;
-	private Order order;
+	private int itemId;
+	private int orderId;
 	private int quantity;
 	private int itemCost;
 
-	public ItemOrders(int id, Item item, Order order, int quantity) {
+	public ItemOrders(int id, int itemId, int orderId, int quantity) {
 		this.id = id;
-		this.item = item;
-		this.order = order;
+		this.itemId = itemId;
+		this.orderId = orderId;
 		this.quantity = quantity;
-		this.itemCost = quantity * item.getValue();
+		this.itemCost = quantity * itemId;
+	}
+	
+	public ItemOrders(int id, int itemId, int orderId, int quantity, int itemCost) {
+		this.id = id;
+		this.itemId = itemId;
+		this.orderId = orderId;
+		this.quantity = quantity;
+		this.itemCost = itemCost;
 	}
 
 	public int getId() {
@@ -31,12 +39,12 @@ public class ItemOrders {
 		return itemCost;
 	}
 
-	public Item getItem() {
-		return item;
+	public int getItem() {
+		return itemId;
 	}
 
-	public Order getOrder() {
-		return order;
+	public int getOrder() {
+		return orderId;
 	}
 
 }
