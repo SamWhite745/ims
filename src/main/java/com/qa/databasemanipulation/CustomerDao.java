@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.qa.databaseObjects.Customer;
-import com.qa.databaseObjects.Customer;
 import com.qa.ims.Config;
 
 public class CustomerDao implements DAO<Customer> {

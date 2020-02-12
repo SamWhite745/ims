@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.qa.databaseObjects.Customer;
-import com.qa.databaseObjects.ItemOrders;
 import com.qa.databaseObjects.Order;
 import com.qa.ims.Config;
 

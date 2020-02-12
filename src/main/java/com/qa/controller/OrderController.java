@@ -1,8 +1,5 @@
 package com.qa.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.qa.databaseObjects.Customer;
 import com.qa.databaseObjects.Item;
 import com.qa.databaseObjects.ItemOrders;
@@ -24,15 +21,7 @@ public class OrderController implements CrudController<Order> {
 		this.orderService = orderService;
 		this.itemOrderService = new ItemOrdersService(new ItemOrdersDao());
 	}
-	
-	/*
-	 * 	public ItemOrders(int itemId, int orderId, int quantity, int itemCost) {
-		this.itemId = itemId;
-		this.orderId = orderId;
-		this.quantity = quantity;
-		this.itemCost = itemCost;
-	}
-	 */
+
 	
 	@Override
 	public void create() {

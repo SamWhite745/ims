@@ -16,11 +16,6 @@ public class Order {
 		this.customer = customer;
 		this.itemOrders = itemOrders;
 	}
-
-	public Order(Customer customer, List<ItemOrders> itemOrders) {
-		this.customer = customer;
-		this.itemOrders = itemOrders;
-	}
 	
 	public int getId() {
 		return id;
