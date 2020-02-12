@@ -3,9 +3,11 @@ package com.qa.ims;
 import com.qa.controller.CrudController;
 import com.qa.controller.CustomerController;
 import com.qa.controller.ItemController;
+import com.qa.controller.OrderController;
 import com.qa.databasemanipulation.*;
 import com.qa.services.CustomerService;
 import com.qa.services.ItemService;
+import com.qa.services.OrderService;
 
 public class Controller {
 
@@ -42,6 +44,8 @@ public class Controller {
 					action(custController, action);
 					break;
 				case 3:
+					OrderController orderController = new OrderController(new OrderService(new OrderDao()));
+					action(orderController, action);
 					break;
 				case 4:
 					dbLoop = true;

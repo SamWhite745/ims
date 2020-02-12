@@ -15,7 +15,7 @@ public class ItemController implements CrudController<Item>{
 	public void readAll() {
 		itemService.readAll().stream().forEach(item -> System.out.println(item.toString()));
 	}
-
+	
 	@Override
 	public void create() {
 		System.out.println("What is the name of the item you want to add?");

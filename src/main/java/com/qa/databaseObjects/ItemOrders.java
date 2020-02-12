@@ -6,17 +6,23 @@ public class ItemOrders {
 	private int orderId;
 	private int quantity;
 	private int itemCost;
-
-	public ItemOrders(int id, int itemId, int orderId, int quantity) {
+	
+	/**
+	 * @param id
+	 * @param itemId
+	 * @param orderId
+	 * @param quantity
+	 * @param itemCost
+	 */
+	public ItemOrders(int id, int itemId, int orderId, int quantity, int itemCost) {
 		this.id = id;
 		this.itemId = itemId;
 		this.orderId = orderId;
 		this.quantity = quantity;
-		this.itemCost = quantity * itemId;
+		this.itemCost = itemCost;
 	}
 	
-	public ItemOrders(int id, int itemId, int orderId, int quantity, int itemCost) {
-		this.id = id;
+	public ItemOrders(int itemId, int orderId, int quantity, int itemCost) {
 		this.itemId = itemId;
 		this.orderId = orderId;
 		this.quantity = quantity;
