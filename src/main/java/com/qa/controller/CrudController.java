@@ -1,6 +1,6 @@
 package com.qa.controller;
 
-public interface CrudController<T> {
+public interface CrudController {
 	void create();
 
 	void readAll();

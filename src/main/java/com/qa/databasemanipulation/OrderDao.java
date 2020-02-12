@@ -11,8 +11,8 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import com.qa.databaseObjects.Customer;
-import com.qa.databaseObjects.Order;
+import com.qa.databaseobjects.Customer;
+import com.qa.databaseobjects.Order;
 import com.qa.ims.Config;
 
 public class OrderDao implements DAO<Order> {

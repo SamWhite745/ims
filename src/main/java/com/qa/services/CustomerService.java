@@ -2,8 +2,8 @@ package com.qa.services;
 
 import java.util.List;
 
-import com.qa.databaseObjects.Customer;
 import com.qa.databasemanipulation.CustomerDao;
+import com.qa.databaseobjects.Customer;
 
 public class CustomerService implements CrudService<Customer> {
 	private CustomerDao custDao;

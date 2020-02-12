@@ -2,8 +2,8 @@ package com.qa.services;
 
 import java.util.List;
 
-import com.qa.databaseObjects.Order;
 import com.qa.databasemanipulation.OrderDao;
+import com.qa.databaseobjects.Order;
 
 public class OrderService implements CrudService<Order> {
 	private OrderDao orderDao;

@@ -66,7 +66,7 @@ public class Controller {
 
 	}
 
-	private void action(CrudController<?> crudController, int action) {
+	private void action(CrudController crudController, int action) {
 		switch (action) {
 		case 1:
 			crudController.create();

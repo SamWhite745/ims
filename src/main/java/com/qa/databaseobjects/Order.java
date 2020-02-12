@@ -1,4 +1,4 @@
-package com.qa.databaseObjects;
+package com.qa.databaseobjects;
 
 import java.util.List;
 
