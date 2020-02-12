@@ -39,8 +39,10 @@ public class CustomerController implements CrudController<Customer> {
 
 	@Override
 	public void delete() {
-		// TODO Auto-generated method stub
-
+		System.out.println("What is the customer Id you want to delete?");
+		int id = Utils.getIntInput();
+		customerService.delete(id);
+		System.out.println("Successfully deleted");
 	}
 
 }
