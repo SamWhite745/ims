@@ -45,7 +45,7 @@ public class Controller {
 
 				switch (database) {
 				case 1:
-					ItemController itemController = new ItemController(new ItemService(new ItemDao()));
+					ItemController itemController = new ItemController(new ItemService(new ItemDao(Config.getUsername(), Config.getPassword())));
 					action(itemController, action);
 					break;
 				case 2:
@@ -53,7 +53,7 @@ public class Controller {
 					action(custController, action);
 					break;
 				case 3:
-					OrderController orderController = new OrderController(new OrderService(new OrderDao()));
+					OrderController orderController = new OrderController(new OrderService(new OrderDao(Config.getUsername(), Config.getPassword())));
 					action(orderController, action);
 					break;
 				case 4:

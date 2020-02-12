@@ -23,7 +23,7 @@ public class OrderController implements CrudController<Order> {
 
 	public OrderController(CrudService<Order> orderService) {
 		this.orderService = orderService;
-		this.itemOrderService = new ItemOrdersService(new ItemOrdersDao());
+		this.itemOrderService = new ItemOrdersService(new ItemOrdersDao(Config.getUsername(), Config.getPassword()));
 	}
 
 	@Override
@@ -36,13 +36,13 @@ public class OrderController implements CrudController<Order> {
 
 		orderService.create(new Order(cust));
 
-		OrderDao orderDao = new OrderDao();
+		OrderDao orderDao = new OrderDao(Config.getUsername(), Config.getPassword());
 		int orderId = orderDao.readLatest();
 
 		LOGGER.info("What item do you want to add to the order? (id)");
 		int itemId = Utils.getIntInput();
 
-		ItemDao itemDao = new ItemDao();
+		ItemDao itemDao = new ItemDao(Config.getUsername(), Config.getPassword());
 		Item item = itemDao.getItem(itemId);
 
 		LOGGER.info("How many of this item do you want?");
@@ -97,7 +97,7 @@ public class OrderController implements CrudController<Order> {
 			LOGGER.info("What is the new quantity?: ");
 			int quantity = Utils.getIntInput();
 
-			ItemDao itemDao = new ItemDao();
+			ItemDao itemDao = new ItemDao(Config.getUsername(), Config.getPassword());
 			int itemCost = itemDao.getItem(itemId).getValue() * quantity;
 
 			itemOrderService.update(new ItemOrders(itemOrderId, itemId, orderId, quantity, itemCost));
@@ -117,7 +117,7 @@ public class OrderController implements CrudController<Order> {
 			LOGGER.info("What is the quantity?: ");
 			int newQuantity = Utils.getIntInput();
 
-			ItemDao newItemDao = new ItemDao();
+			ItemDao newItemDao = new ItemDao(Config.getUsername(), Config.getPassword());
 			int newItemCost = newItemDao.getItem(newItemId).getValue() * newQuantity;
 
 			itemOrderService.create(new ItemOrders(newItemId, newOrderId, newQuantity, newItemCost));
