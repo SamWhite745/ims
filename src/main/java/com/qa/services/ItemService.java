@@ -2,8 +2,8 @@ package com.qa.services;
 
 import java.util.List;
 
-import com.qa.databaseObjects.Item;
 import com.qa.databasemanipulation.ItemDao;
+import com.qa.databaseobjects.Item;
 
 public class ItemService implements CrudService<Item>{
 	private ItemDao itemDao;

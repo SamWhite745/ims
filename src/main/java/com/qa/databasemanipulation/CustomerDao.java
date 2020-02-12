@@ -11,7 +11,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import com.qa.databaseObjects.Customer;
+import com.qa.databaseobjects.Customer;
 
 public class CustomerDao implements DAO<Customer> {
 	public static final Logger LOGGER = Logger.getLogger(CustomerDao.class);

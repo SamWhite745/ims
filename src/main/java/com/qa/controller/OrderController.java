@@ -2,20 +2,20 @@ package com.qa.controller;
 
 import org.apache.log4j.Logger;
 
-import com.qa.databaseObjects.Customer;
-import com.qa.databaseObjects.Item;
-import com.qa.databaseObjects.ItemOrders;
-import com.qa.databaseObjects.Order;
 import com.qa.databasemanipulation.CustomerDao;
 import com.qa.databasemanipulation.ItemDao;
 import com.qa.databasemanipulation.ItemOrdersDao;
 import com.qa.databasemanipulation.OrderDao;
+import com.qa.databaseobjects.Customer;
+import com.qa.databaseobjects.Item;
+import com.qa.databaseobjects.ItemOrders;
+import com.qa.databaseobjects.Order;
 import com.qa.ims.Config;
 import com.qa.ims.Utils;
 import com.qa.services.CrudService;
 import com.qa.services.ItemOrdersService;
 
-public class OrderController implements CrudController<Order> {
+public class OrderController implements CrudController {
 	public static final Logger LOGGER = Logger.getLogger(OrderController.class);
 
 	private CrudService<Order> orderService;
@@ -59,7 +59,7 @@ public class OrderController implements CrudController<Order> {
 		for (Order order : orderService.readAll()) {
 			LOGGER.info(order.toString());
 			itemOrderService.readAll().stream().filter(itemOrder -> itemOrder.getOrder() == order.getId())
-					.forEach(iOrders -> System.out.println(iOrders.toString()));
+					.forEach(iOrders -> LOGGER.info(iOrders.toString()));
 		}
 	}
 

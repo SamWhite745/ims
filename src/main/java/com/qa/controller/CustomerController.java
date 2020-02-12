@@ -2,11 +2,11 @@ package com.qa.controller;
 
 import org.apache.log4j.Logger;
 
-import com.qa.databaseObjects.Customer;
+import com.qa.databaseobjects.Customer;
 import com.qa.ims.Utils;
 import com.qa.services.CrudService;
 
-public class CustomerController implements CrudController<Customer> {
+public class CustomerController implements CrudController {
 	public static final Logger LOGGER = Logger.getLogger(CustomerController.class);
 
 	private CrudService<Customer> customerService;
@@ -17,7 +17,7 @@ public class CustomerController implements CrudController<Customer> {
 
 	@Override
 	public void readAll() {
-		customerService.readAll().stream().forEach(customer -> System.out.println(customer.toString()));
+		customerService.readAll().stream().forEach(customer -> LOGGER.info(customer.toString()));
 	}
 
 	@Override
