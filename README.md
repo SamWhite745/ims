@@ -18,7 +18,8 @@ Download and install the following programs.
 [MySQL server](https://www.mysql.com/downloads/)
 ```
 
-* Windows 10
+Windows 10
+
 After installing java and maven, you need to add the respective bins to your path environment variable.
 A guide to this can be found [here](https://mkyong.com/maven/how-to-install-maven-in-windows/) 
 
