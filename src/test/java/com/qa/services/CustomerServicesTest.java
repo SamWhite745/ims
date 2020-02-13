@@ -5,11 +5,9 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import com.qa.databasemanipulation.CustomerDao;
-import com.qa.databasemanipulation.DAO;
 import com.qa.databaseobjects.Customer;
 
 
@@ -44,7 +42,7 @@ public class CustomerServicesTest {
 	
 	@Test
 	public void customerServicesDelete() {
-		customerServices.delete(1);;
+		customerServices.delete(1);
 		Mockito.verify(customerDao, Mockito.times(1)).delete(1);
 	}
 }

@@ -82,6 +82,7 @@ public class OrderTest {
 		assertFalse(order.equals(other));
 	}
 	
+	@Test
 	public void OrderItemsNullButOtherOrderItemsNotNull() {
 		order.setItemOrders(null);
 		assertFalse(order.equals(other));

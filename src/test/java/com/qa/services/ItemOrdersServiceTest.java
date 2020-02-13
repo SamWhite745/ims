@@ -42,7 +42,13 @@ public class ItemOrdersServiceTest {
 	
 	@Test
 	public void itemServicesDelete() {
-		itemOrdersServices.delete(1);;
+		itemOrdersServices.delete(1);
 		Mockito.verify(itemOrdersDao, Mockito.times(1)).delete(1);
+	}
+	
+	@Test
+	public void itemServicesDeleteByOrder() {
+		itemOrdersServices.deleteByOrder(1);
+		Mockito.verify(itemOrdersDao, Mockito.times(1)).deleteByOrder(1);
 	}
 }

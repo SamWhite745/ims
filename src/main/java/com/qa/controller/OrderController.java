@@ -136,5 +136,14 @@ public class OrderController implements CrudController {
 		itemOrderService.deleteByOrder(orderId);
 		orderService.delete(orderId);
 	}
+	
+
+	public String getStringInput() {
+		return Utils.getStringInput();
+	}
+	
+	public int getIntInput() {
+		return Utils.getIntInput();
+	}
 
 }
