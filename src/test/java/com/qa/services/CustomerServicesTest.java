@@ -44,7 +44,7 @@ public class CustomerServicesTest {
 	
 	@Test
 	public void customerServicesDelete() {
-		customerServices.delete(1);;
+		customerServices.delete(1);
 		Mockito.verify(customerDao, Mockito.times(1)).delete(1);
 	}
 }

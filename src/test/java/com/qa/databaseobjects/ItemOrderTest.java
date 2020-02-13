@@ -78,8 +78,26 @@ public class ItemOrderTest {
 	}
 	
 	@Test
+	public void ItemOrdersItemCostNotEqual() {
+		other.setItemCost(10);
+		assertFalse(itemOrder.equals(other));
+	}
+	
+	@Test
 	public void ItemOrdersIdsNotEqual() {
 		other.setId(2);
+		assertFalse(itemOrder.equals(other));
+	}
+	
+	@Test
+	public void ItemOrdersOrderIdsNotEqual() {
+		other.setOrder(2);
+		assertFalse(itemOrder.equals(other));
+	}
+	
+	@Test
+	public void ItemOrdersQuantityNotEqual() {
+		other.setQuantity(2);
 		assertFalse(itemOrder.equals(other));
 	}
 	
