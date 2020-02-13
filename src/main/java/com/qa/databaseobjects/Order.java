@@ -50,5 +50,39 @@ public class Order {
 		return "Order id : " + id + " - " + customer.getName() + ", Id : " + customer.getId();
 	}
 
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((customer == null) ? 0 : customer.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((itemOrders == null) ? 0 : itemOrders.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Order other = (Order) obj;
+		if (customer == null) {
+			if (other.customer != null)
+				return false;
+		} else if (!customer.equals(other.customer))
+			return false;
+		if (id != other.id)
+			return false;
+		if (itemOrders == null) {
+			if (other.itemOrders != null)
+				return false;
+		} else if (!itemOrders.equals(other.itemOrders))
+			return false;
+		return true;
+	}
 	
 }
