@@ -117,4 +117,21 @@ public class CustomerDao implements DAO<Customer> {
 		}
 		return customer;
 	}
+	
+	public Customer readLatestCustomer() {
+		Customer cust = null;
+		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
+				Statement statement = connection.createStatement();
+				ResultSet resultSet = statement.executeQuery("SELECT * FROM customers ORDER BY id DESC LIMIT 1");){
+			resultSet.next();
+			int id = resultSet.getInt("id");
+			String name = resultSet.getString("name");
+			cust = new Customer(id, name);
+		} catch (Exception e) {
+			LOGGER.debug(e.getStackTrace());
+			LOGGER.error(e.getMessage());
+		}
+		return cust;
+	}
+	
 }
