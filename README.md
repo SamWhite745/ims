@@ -3,6 +3,7 @@
 This is a project to demonstrate the skills I have learned over the first five weeks of my training. I have used GCP to host a virtual machine, which in turn is hosting a Jenkins server which watches my Master branch on github.
 It also automatically runs tests and uses sonarqube for code checking. Finally, if it passes SonarQube it pushes to nexus, an artifact repository.
 
+Test Coverage at 40.0%
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
@@ -17,7 +18,7 @@ Download and install the following programs.
 [MySQL server](https://www.mysql.com/downloads/)
 ```
 
-*Windows 10
+* Windows 10
 After installing java and maven, you need to add the respective bins to your path environment variable.
 A guide to this can be found [here](https://mkyong.com/maven/how-to-install-maven-in-windows/) 
 
