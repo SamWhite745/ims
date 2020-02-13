@@ -20,7 +20,6 @@ import com.qa.databaseobjects.Item;
 public class ItemDao implements DAO<Item> {
 	public static final Logger LOGGER = Logger.getLogger(ItemDao.class);
 
-
 	private String jdbcConnectionUrl;
 	private String username;
 	private String password;
@@ -36,7 +35,7 @@ public class ItemDao implements DAO<Item> {
 		this.username = username;
 		this.password = password;
 	}
-	
+
 	/**
 	 *
 	 */
@@ -45,7 +44,7 @@ public class ItemDao implements DAO<Item> {
 		String query = " INSERT INTO items (name, value) values (?, ?)";
 
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
-				PreparedStatement preparedStmt = connection.prepareStatement(query);){
+				PreparedStatement preparedStmt = connection.prepareStatement(query);) {
 			preparedStmt.setString(1, t.getName());
 			preparedStmt.setInt(2, t.getValue());
 			preparedStmt.execute();
@@ -54,7 +53,7 @@ public class ItemDao implements DAO<Item> {
 			LOGGER.error(e.getMessage());
 		}
 	}
-	
+
 	/**
 	 *
 	 */
@@ -63,7 +62,7 @@ public class ItemDao implements DAO<Item> {
 		List<Item> items = new ArrayList<>();
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement stmt = connection.createStatement();
-				ResultSet rs = stmt.executeQuery("SELECT * FROM items");){
+				ResultSet rs = stmt.executeQuery("SELECT * FROM items");) {
 			while (rs.next()) {
 				int id = rs.getInt("id");
 				String name = rs.getString("name");
@@ -78,13 +77,13 @@ public class ItemDao implements DAO<Item> {
 		}
 		return items;
 	}
-	
+
 	@Override
 	public void update(Item t) {
 		String query = "UPDATE items SET name = ?, value = ? WHERE id = ?";
-		
+
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
-				PreparedStatement preparedStmt = connection.prepareStatement(query);){
+				PreparedStatement preparedStmt = connection.prepareStatement(query);) {
 			preparedStmt.setString(1, t.getName());
 			preparedStmt.setInt(2, t.getValue());
 			preparedStmt.setInt(3, t.getId());
@@ -95,20 +94,6 @@ public class ItemDao implements DAO<Item> {
 		}
 	}
 
-	@Override
-	public void delete(int id) {
-		String query = "DELETE FROM items WHERE id = ?";
-
-		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
-				PreparedStatement preparedStmt = connection.prepareStatement(query);){
-			preparedStmt.setInt(1, id);
-			preparedStmt.execute();
-		} catch (SQLException e) {
-			LOGGER.debug(e.getStackTrace());
-			LOGGER.error(e.getMessage());
-		}
-	}
-	
 	/**
 	 * @param id
 	 * @return
@@ -118,7 +103,7 @@ public class ItemDao implements DAO<Item> {
 		String query = "SELECT * FROM items WHERE id = ?";
 
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
-				PreparedStatement preparedStmt = connection.prepareStatement(query);){
+				PreparedStatement preparedStmt = connection.prepareStatement(query);) {
 			preparedStmt.setInt(1, id);
 			try (ResultSet rs = preparedStmt.executeQuery();) {
 				while (rs.next()) {
@@ -134,4 +119,19 @@ public class ItemDao implements DAO<Item> {
 		}
 		return item;
 	}
+
+	@Override
+	public void delete(int id) {
+		String query = "DELETE FROM items WHERE id = ?";
+
+		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
+				PreparedStatement preparedStmt = connection.prepareStatement(query);) {
+			preparedStmt.setInt(1, id);
+			preparedStmt.execute();
+		} catch (SQLException e) {
+			LOGGER.debug(e.getStackTrace());
+			LOGGER.error(e.getMessage());
+		}
+	}
+
 }

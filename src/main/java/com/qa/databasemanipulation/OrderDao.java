@@ -61,7 +61,6 @@ public class OrderDao implements DAO<Order> {
 			while (rs.next()) {
 				int id = rs.getInt("id");
 				int custId = rs.getInt("customer_id");
-
 				CustomerDao custDao = new CustomerDao(Config.getUsername(), Config.getPassword());
 				Customer cust = custDao.getCustomer(custId);
 
@@ -89,6 +88,19 @@ public class OrderDao implements DAO<Order> {
 			LOGGER.error(e.getMessage());
 		}
 	}
+	public int readLatest() {
+		int latestId = 0;
+		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
+				Statement statement = connection.createStatement();
+				ResultSet resultSet = statement.executeQuery("SELECT * FROM orders ORDER BY id DESC LIMIT 1");){
+			resultSet.next();
+			latestId = resultSet.getInt("id");
+		} catch (Exception e) {
+			LOGGER.debug(e.getStackTrace());
+			LOGGER.error(e.getMessage());
+		}
+		return latestId;
+	}
 
 	@Override
 	public void delete(int id) {
@@ -104,17 +116,5 @@ public class OrderDao implements DAO<Order> {
 		}
 	}
 
-	public int readLatest() {
-		int latestId = 0;
-		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
-				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery("SELECT * FROM orders ORDER BY id DESC LIMIT 1");){
-			resultSet.next();
-			latestId = resultSet.getInt("id");
-		} catch (Exception e) {
-			LOGGER.debug(e.getStackTrace());
-			LOGGER.error(e.getMessage());
-		}
-		return latestId;
-	}
+
 }
