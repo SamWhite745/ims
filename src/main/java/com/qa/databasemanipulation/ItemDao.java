@@ -13,6 +13,10 @@ import org.apache.log4j.Logger;
 
 import com.qa.databaseobjects.Item;
 
+/**
+ * @author Admin
+ *
+ */
 public class ItemDao implements DAO<Item> {
 	public static final Logger LOGGER = Logger.getLogger(ItemDao.class);
 
@@ -33,6 +37,9 @@ public class ItemDao implements DAO<Item> {
 		this.password = password;
 	}
 	
+	/**
+	 *
+	 */
 	@Override
 	public void create(Item t) {
 		String query = " INSERT INTO items (name, value) values (?, ?)";
@@ -48,6 +55,9 @@ public class ItemDao implements DAO<Item> {
 		}
 	}
 	
+	/**
+	 *
+	 */
 	@Override
 	public List<Item> readAll() {
 		List<Item> items = new ArrayList<>();
@@ -99,6 +109,10 @@ public class ItemDao implements DAO<Item> {
 		}
 	}
 	
+	/**
+	 * @param id
+	 * @return
+	 */
 	public Item getItem(int id) {
 		Item item = null;
 		String query = "SELECT * FROM items WHERE id = ?";
