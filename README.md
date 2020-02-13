@@ -17,7 +17,7 @@ Download and install the following programs.
 [MySQL server](https://www.mysql.com/downloads/)
 ```
 
-(Windows 10)
+*Windows 10
 After installing java and maven, you need to add the respective bins to your path environment variable.
 A guide to this can be found [here](https://mkyong.com/maven/how-to-install-maven-in-windows/) 
 
@@ -26,7 +26,7 @@ A guide to this can be found [here](https://mkyong.com/maven/how-to-install-mave
 To get the program running, firstly download the .jar file from the Nexus Artifact Repository.
 Once its downloaded and the prerequisites are installed, run the following command to start the IMS:
 ```
-java -jar * jar name *
+java -jar **jar name**
 ```
 ## Running the tests
 
@@ -69,7 +69,7 @@ We use [SemVer](http://semver.org/) for versioning.
 
 ## Authors
 
-* **Sam White** - [SamWhite745](https://github.com/SamWhite745) *
+* **Sam White** - [SamWhite745](https://github.com/SamWhite745) 
 
 
 ## License
@@ -78,7 +78,7 @@ This project is licensed under the MIT license - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Chris Perrins - Teaching the content and providing code examples *
-* Tyler E- aka the rubber ducky *
-* Elliot D - Large contributions to Risk Assessment *
-* You - for taking the time to go through this README *
+* Chris Perrins - Teaching the content and providing code examples 
+* Tyler E- aka the rubber ducky 
+* Elliot D - Large contributions to Risk Assessment 
+* You - for taking the time to go through this README 
