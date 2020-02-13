@@ -29,16 +29,33 @@ public class ItemOrders {
 		this.itemCost = itemCost;
 	}
 
-	public int getId() {
-		return id;
+	
+	public void setId(int id) {
+		this.id = id;
 	}
-
-	public int getQuantity() {
-		return quantity;
+	
+	public void setItem(int itemId) {
+		this.itemId = itemId;
+	}	
+	
+	public void setOrder(int orderId) {
+		this.orderId = orderId;
 	}
 
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
+	}
+	
+	public void setItemCost(int itemCost) {
+		this.itemCost = itemCost;
+	}
+
+	public int getId() {
+		return id;
+	}
+	
+	public int getQuantity() {
+		return quantity;
 	}
 
 	public int getItemCost() {
