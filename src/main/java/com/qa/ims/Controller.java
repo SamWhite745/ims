@@ -59,6 +59,9 @@ public class Controller {
 				case 4:
 					dbLoop = true;
 					break;
+				default:
+					LOGGER.info("Invalid action");
+					break;
 				}
 			}
 
@@ -79,6 +82,9 @@ public class Controller {
 			break;
 		case 4:
 			crudController.delete();
+			break;
+		default:
+			LOGGER.info("Invalid action");
 			break;
 		}
 	}
