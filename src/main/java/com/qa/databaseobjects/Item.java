@@ -1,46 +1,80 @@
 package com.qa.databaseobjects;
 
+/**
+ * @author Sam Implementation of the item table to perform logic on.
+ *
+ */
 public class Item {
 
 	private int id;
 	private String name;
 	private int value;
 
+	/**
+	 * @param id
+	 * @param name
+	 * @param value
+	 */
 	public Item(int id, String name, int value) {
 		this.id = id;
 		this.name = name;
 		this.value = value;
 	}
 
+	/**
+	 * @param name
+	 * @param value
+	 */
 	public Item(String name, int value) {
 		this.name = name;
 		this.value = value;
 	}
 
+	/**
+	 * @return id
+	 */
 	public int getId() {
 		return id;
 	}
 
+	/**
+	 * @param id sets id
+	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 
+	/**
+	 * @return name
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * @param name sets name
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	/**
+	 * @return value
+	 */
 	public int getValue() {
 		return value;
 	}
 
+	/**
+	 * @param value sets value
+	 */
 	public void setValue(int value) {
 		this.value = value;
 	}
 	
+	/**
+	 * @return item to string format
+	 */
 	@Override
 	public String toString() {
 		return this.id + " " + this.name + " " + this.value;

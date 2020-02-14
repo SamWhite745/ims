@@ -2,50 +2,87 @@ package com.qa.databaseobjects;
 
 import java.util.List;
 
+/**
+ * @author Sam Implementation of the order table to perform logic on.
+ *
+ */
 public class Order {
 	private int id;
 	private Customer customer;
 	private List<ItemOrders> itemOrders;
 	
+	/**
+	 * @param customer
+	 */
 	public Order(Customer customer) {
 		this.customer = customer;
 	}
 
+	/**
+	 * @param id
+	 * @param customer
+	 * @param itemOrders
+	 */
 	public Order(int id, Customer customer, List<ItemOrders> itemOrders) {
 		this.id = id;
 		this.customer = customer;
 		this.itemOrders = itemOrders;
 	}
 	
+	/**
+	 * @param id
+	 * @param cust
+	 */
 	public Order(int id, Customer cust) {
 		this.id = id;
 		this.customer = cust;
 	}
 
+	/**
+	 * @return id
+	 */
 	public int getId() {
 		return id;
 	}
 
+	/**
+	 * @return customer
+	 */
 	public Customer getCustomer() {
 		return customer;
 	}
 
+	/**
+	 * @return list of itemOrders
+	 */
 	public List<ItemOrders> getItemOrders() {
 		return itemOrders;
 	}
 
+	/**
+	 * @param itemOrders
+	 */
 	public void setItemOrders(List<ItemOrders> itemOrders) {
 		this.itemOrders = itemOrders;
 	}
 
+	/**
+	 * @param id
+	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 
+	/**
+	 * @param customer
+	 */
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
 	
+	/**
+	 * @return order to string
+	 */
 	public String toString() {
 		return "Order id : " + id + " - " + customer.getName() + ", Id : " + customer.getId();
 	}

@@ -17,7 +17,7 @@ import com.qa.databaseobjects.Customer;
 import com.qa.services.CustomerService;
 
 @RunWith(MockitoJUnitRunner.class)
-public class CustomerControllerTest {
+public class CustomerControllerIT {
 	
 	/**
 	 *  The thing I want to fake functionality for

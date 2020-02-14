@@ -1,5 +1,9 @@
 package com.qa.databaseobjects;
 
+/**
+ * @author Sam
+ *
+ */
 public class ItemOrders {
 	private int id;
 	private int itemId;
@@ -22,6 +26,12 @@ public class ItemOrders {
 		this.itemCost = itemCost;
 	}
 
+	/**
+	 * @param itemId
+	 * @param orderId
+	 * @param quantity
+	 * @param itemCost
+	 */
 	public ItemOrders(int itemId, int orderId, int quantity, int itemCost) {
 		this.itemId = itemId;
 		this.orderId = orderId;
@@ -30,46 +40,79 @@ public class ItemOrders {
 	}
 
 	
+	/**
+	 * @param id
+	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 	
+	/**
+	 * @param itemId
+	 */
 	public void setItem(int itemId) {
 		this.itemId = itemId;
 	}	
 	
+	/**
+	 * @param orderId
+	 */
 	public void setOrder(int orderId) {
 		this.orderId = orderId;
 	}
 
+	/**
+	 * @param quantity
+	 */
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
 	
+	/**
+	 * @param itemCost
+	 */
 	public void setItemCost(int itemCost) {
 		this.itemCost = itemCost;
 	}
 
+	/**
+	 * @return id
+	 */
 	public int getId() {
 		return id;
 	}
 	
+	/**
+	 * @return quantity
+	 */
 	public int getQuantity() {
 		return quantity;
 	}
 
+	/**
+	 * @return item cost
+	 */
 	public int getItemCost() {
 		return itemCost;
 	}
 
+	/**
+	 * @return item id
+	 */
 	public int getItem() {
 		return itemId;
 	}
 
+	/**
+	 * @return order id
+	 */
 	public int getOrder() {
 		return orderId;
 	}
 	
+	/**
+	 * @return item order to string
+	 */
 	@Override
 	public String toString() {
 		return " - id: " + this.id + ", itemId: " + this.itemId + ", orderId: " + this.orderId + ", quantity: " + this.quantity + ", total cost: " + this.itemCost;
