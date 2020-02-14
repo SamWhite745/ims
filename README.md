@@ -3,7 +3,7 @@
 This is a project to demonstrate the skills I have learned over the first five weeks of my training. I have used GCP to host a virtual machine, which in turn is hosting a Jenkins server which watches my Master branch on github.
 It also automatically runs tests and uses sonarqube for code checking. Finally, if it passes SonarQube it pushes to nexus, an artifact repository.
 
-Test Coverage at 40.0%
+Test Coverage at 40.0+%
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
@@ -12,11 +12,9 @@ These instructions will get you a copy of the project up and running on your loc
 
 Download and install the following programs.
 
-```
 [Java JDK 1.8+](https://www.java.com/en/download/)
 [Maven](https://maven.apache.org/install.html)
 [MySQL server](https://www.mysql.com/downloads/)
-```
 
 Windows 10
 
@@ -32,29 +30,43 @@ java -jar **jar name**
 ```
 ## Running the tests
 
-Explain how to run the automated tests for this system. Break down into which tests and what they do
+This project contains both Unit and Integration tests. To run Unit test use the command:
+```
+mvn test
+```
+and to run the integration tests run the command:
+```
+mvn integration-test
+```
 
 ### Unit Tests 
 
-Explain what these tests test, why and how to run them
+Unit tests are performed on methods that do not call other methods. Examples of these include setters and getters.
 
 ```
-Give an example
+	@Test
+	public void settersTest() {
+		assertNotNull(customer.getId());
+		assertNotNull(customer.getName());
+		
+		customer.setId(0);
+		assertNotNull(customer.getId());
+		
+		customer.setName(null);
+		assertNull(customer.getName());
+	}
 ```
 
 ### Integration Tests 
-Explain what these tests test, why and how to run them
+Integration tests are used for methods that rely on other methods. For example, in my item services class, I call item dao functions. But to make sure the service class works properly, I mock the returns from the DAO
 
 ```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
+	@Test
+	public void customerServicesCreate() {
+		Customer customer = new Customer("Sam White");
+		customerServices.create(customer);
+		Mockito.verify(customerDao, Mockito.times(1)).create(customer);
+	}
 ```
 
 ## Deployment
