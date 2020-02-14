@@ -12,8 +12,4 @@ public class Utils {
 	public static String getStringInput() {
 		return scanner.next();
 	}
-
-	public static int getIntInput() {
-		return scanner.nextInt();
-	}
 }

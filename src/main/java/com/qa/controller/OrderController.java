@@ -31,7 +31,7 @@ public class OrderController implements CrudController {
 	@Override
 	public void create() {
 		LOGGER.info("Which customer is this for? (id)");
-		int customerId = getIntInput();
+		int customerId = Integer.parseInt(getStringInput());
 
 		CustomerDao custDao = new CustomerDao(Config.getUsername(), Config.getPassword());
 		Customer cust = custDao.getCustomer(customerId);
@@ -42,13 +42,13 @@ public class OrderController implements CrudController {
 		int orderId = orderDao.readLatest();
 
 		LOGGER.info("What item do you want to add to the order? (id)");
-		int itemId = getIntInput();
+		int itemId = Integer.parseInt(getStringInput());
 
 		ItemDao itemDao = new ItemDao(Config.getUsername(), Config.getPassword());
 		Item item = itemDao.getItem(itemId);
 
 		LOGGER.info("How many of this item do you want?");
-		int quantity = getIntInput();
+		int quantity = Integer.parseInt(getStringInput());
 
 		ItemOrders iOrder = new ItemOrders(item.getId(), orderId, quantity, item.getValue() * quantity);
 		itemOrderService.create(iOrder);
@@ -73,14 +73,14 @@ public class OrderController implements CrudController {
 		LOGGER.info("2 : update an item in the order");
 		LOGGER.info("3 : delete an item from the order");
 		LOGGER.info("4 : add an item to the order");
-		int selection = getIntInput();
+		int selection = Integer.parseInt(getStringInput());
 
 		switch (selection) {
 		case 1:
 			LOGGER.info("new name: ");
 			String name = getStringInput();
 			LOGGER.info("For which id: ");
-			int id = getIntInput();
+			int id = Integer.parseInt(getStringInput());
 
 			CustomerDao custDao = new CustomerDao(Config.getUsername(), Config.getPassword());
 			Customer cust = custDao.getCustomer(id);
@@ -89,16 +89,16 @@ public class OrderController implements CrudController {
 			break;
 		case 2:
 			LOGGER.info("Which itemOrder id do you want to update");
-			int itemOrderId = getIntInput();
+			int itemOrderId = Integer.parseInt(getStringInput());
 
 			LOGGER.info("What is the new item id?: ");
-			int itemId = getIntInput();
+			int itemId = Integer.parseInt(getStringInput());
 
 			LOGGER.info("What is the new order id?: ");
-			int orderId = getIntInput();
+			int orderId = Integer.parseInt(getStringInput());
 
 			LOGGER.info("What is the new quantity?: ");
-			int quantity = getIntInput();
+			int quantity = Integer.parseInt(getStringInput());
 
 			ItemDao itemDao = new ItemDao(Config.getUsername(), Config.getPassword());
 			int itemCost = itemDao.getItem(itemId).getValue() * quantity;
@@ -107,18 +107,18 @@ public class OrderController implements CrudController {
 			break;
 		case 3:
 			LOGGER.info("Which item order do you want to delete? (id)");
-			int itemDeleteId = getIntInput();
+			int itemDeleteId = Integer.parseInt(getStringInput());
 			itemOrderService.delete(itemDeleteId);
 			break;
 		case 4:
 			LOGGER.info("What is the item id?: ");
-			int newItemId = getIntInput();
+			int newItemId = Integer.parseInt(getStringInput());
 
 			LOGGER.info("What is the order id?: ");
-			int newOrderId = getIntInput();
+			int newOrderId = Integer.parseInt(getStringInput());
 
 			LOGGER.info("What is the quantity?: ");
-			int newQuantity = getIntInput();
+			int newQuantity = Integer.parseInt(getStringInput());
 
 			ItemDao newItemDao = new ItemDao(Config.getUsername(), Config.getPassword());
 			int newItemCost = newItemDao.getItem(newItemId).getValue() * newQuantity;
@@ -134,7 +134,7 @@ public class OrderController implements CrudController {
 	@Override
 	public void delete() {
 		LOGGER.info("Which order do you want to delete? (id)");
-		int orderId = getIntInput();
+		int orderId = Integer.parseInt(getStringInput());
 
 		itemOrderService.deleteByOrder(orderId);
 		orderService.delete(orderId);
@@ -144,9 +144,4 @@ public class OrderController implements CrudController {
 	public String getStringInput() {
 		return Utils.getStringInput();
 	}
-	
-	public int getIntInput() {
-		return Utils.getIntInput();
-	}
-
 }

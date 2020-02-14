@@ -30,7 +30,7 @@ public class Controller {
 			LOGGER.info("3 Update");
 			LOGGER.info("4 Delete");
 			LOGGER.info("5 Exit");
-			int action = Utils.getIntInput();
+			int action = Integer.parseInt(Utils.getStringInput());
 			if (action == 5) actionLoop = true;
 			
 			boolean dbLoop = false;
@@ -41,7 +41,7 @@ public class Controller {
 				LOGGER.info("3 Order");
 				LOGGER.info("4 Back");
 
-				int database = Utils.getIntInput();
+				int database = Integer.parseInt(Utils.getStringInput());
 
 				switch (database) {
 				case 1:

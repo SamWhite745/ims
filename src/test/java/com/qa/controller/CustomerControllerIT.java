@@ -1,10 +1,5 @@
 package com.qa.controller;
 
-import static org.junit.Assert.assertEquals;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -50,21 +45,18 @@ public class CustomerControllerIT {
 
 	@Test
 	public void updateTest() {
-		int id = 1;
 		String name = "Sam White";
 		
-		Mockito.doReturn(id).when(customerController).getIntInput();
-		Mockito.doReturn(name).when(customerController).getStringInput();
+		Mockito.doReturn("1", name).when(customerController).getStringInput();
 
-		Customer customer = new Customer(id, name);
+		Customer customer = new Customer(1, name);
 		customerController.update();
 		Mockito.verify(customerService, Mockito.times(1)).update(customer);
 	}
 	
 	@Test
 	public void deleteTest() {
-		int id = 1;
-		Mockito.doReturn(id).when(customerController).getIntInput();
+		Mockito.doReturn("1").when(customerController).getStringInput();
 		customerController.delete();
 		Mockito.verify(customerService, Mockito.times(1)).delete(1);
 	}

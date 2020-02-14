@@ -31,7 +31,7 @@ public class CustomerController implements CrudController {
 	@Override
 	public void update() {
 		LOGGER.info("Which customer (by id) do you want to update");
-		int id = getIntInput();
+		int id = Integer.parseInt(getStringInput());
 		LOGGER.info("What is the name of the customer");
 		String name = getStringInput();
 		Customer customer = new Customer(id, name);
@@ -42,17 +42,13 @@ public class CustomerController implements CrudController {
 	@Override
 	public void delete() {
 		LOGGER.info("What is the customer Id you want to delete?");
-		int id = getIntInput();
+		int id = Integer.parseInt(getStringInput());
 		customerService.delete(id);
 		LOGGER.info("Successfully deleted");
 	}
 
 	public String getStringInput() {
 		return Utils.getStringInput();
-	}
-	
-	public int getIntInput() {
-		return Utils.getIntInput();
 	}
 
 }

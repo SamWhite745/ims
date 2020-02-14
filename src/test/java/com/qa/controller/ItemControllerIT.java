@@ -1,10 +1,5 @@
 package com.qa.controller;
 
-import static org.junit.Assert.assertEquals;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -13,29 +8,29 @@ import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import com.qa.databaseobjects.Customer;
 import com.qa.databaseobjects.Item;
 import com.qa.services.ItemService;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ItemControllerIT {
-	
+
 	/**
-	 *  The thing I want to fake functionality for
+	 * The thing I want to fake functionality for
 	 */
 	@Mock
 	private ItemService itemService;
-	
+
 	/**
 	 * Spy is used because i want to mock some methods inside the item I'm testing
-	 * InjectMocks uses dependency injection to insert the mock into the customer controller
+	 * InjectMocks uses dependency injection to insert the mock into the customer
+	 * controller
 	 */
 	@Spy
 	@InjectMocks
 	private ItemController itemController;
 
 	@Test
-	public void readAllTest() {		
+	public void readAllTest() {
 		itemController.readAll();
 		Mockito.verify(itemService, Mockito.times(1)).readAll();
 	}
@@ -43,34 +38,27 @@ public class ItemControllerIT {
 	@Test
 	public void createTest() {
 		String name = "Draven_Skin";
-		Mockito.doReturn(name).when(itemController).getStringInput();
-		int value = 1000;
-		Mockito.doReturn(value).when(itemController).getIntInput();
-		Item item = new Item(name, value);
+		Mockito.doReturn(name , "1000").when(itemController).getStringInput();
+		Item item = new Item(name, 1000);
 		itemController.create();
 		Mockito.verify(itemService, Mockito.times(1)).create(item);
 	}
 
 	@Test
 	public void updateTest() {
-		int id = 1;
-		String name = "Draven_Skin";
-		int value = 1000;
+		String name = "Sam White";
+		Mockito.doReturn("1", name, "1000").when(itemController).getStringInput();
 
-		Mockito.doReturn(id, value).when(itemController).getIntInput();
-		Mockito.doReturn(name).when(itemController).getStringInput();
-		
-		Item item = new Item(id, name, value);
+		Item item = new Item(1, name, 1000);
 		itemController.update();
 		Mockito.verify(itemService, Mockito.times(1)).update(item);
 	}
-	
+
 	@Test
 	public void deleteTest() {
-		int id = 1;
-		Mockito.doReturn(id).when(itemController).getIntInput();
+		Mockito.doReturn("1").when(itemController).getStringInput();
 		itemController.delete();
 		Mockito.verify(itemService, Mockito.times(1)).delete(1);
 	}
-	
+
 }

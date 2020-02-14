@@ -25,7 +25,7 @@ public class ItemController implements CrudController {
 		LOGGER.info("What is the name of the item you want to add?");
 		String name = getStringInput();
 		LOGGER.info("What is the value of the item?");
-		int value = getIntInput();
+		int value = Integer.parseInt(getStringInput());
 		Item item = new Item(name, value);
 		itemService.create(item);
 	}
@@ -33,11 +33,11 @@ public class ItemController implements CrudController {
 	@Override
 	public void update() {
 		LOGGER.info("What item id do you want to update");
-		int id = getIntInput();
+		int id = Integer.parseInt(getStringInput());
 		LOGGER.info("What is the name of the item");
 		String name = getStringInput();
 		LOGGER.info("What is the value of the item?");
-		int value = getIntInput();
+		int value = Integer.parseInt(getStringInput());
 		Item item = new Item(id, name, value);
 		itemService.update(item);
 
@@ -46,16 +46,12 @@ public class ItemController implements CrudController {
 	@Override
 	public void delete() {
 		LOGGER.info("What is the item Id you want to delete?");
-		int id = getIntInput();
+		int id = Integer.parseInt(getStringInput());
 		itemService.delete(id);
 		LOGGER.info("Successfully deleted");
 	}
 
 	public String getStringInput() {
 		return Utils.getStringInput();
-	}
-
-	public int getIntInput() {
-		return Utils.getIntInput();
 	}
 }
