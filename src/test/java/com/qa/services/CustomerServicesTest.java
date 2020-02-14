@@ -12,7 +12,7 @@ import com.qa.databaseobjects.Customer;
 
 
 @RunWith(MockitoJUnitRunner.class)
-public class CustomerServicesIT {
+public class CustomerServicesTest {
 	
 	@Mock
 	private CustomerDao customerDao;

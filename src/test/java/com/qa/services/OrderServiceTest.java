@@ -13,7 +13,7 @@ import com.qa.databaseobjects.Order;
 
 
 @RunWith(MockitoJUnitRunner.class)
-public class OrderServiceIT {
+public class OrderServiceTest {
 	
 	@Mock
 	private OrderDao orderDao;
